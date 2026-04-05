@@ -193,7 +193,7 @@ const Start = () => {
 
           {/* Side-by-side results */}
           {selected && (
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 animate-fade-up">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 animate-fade-up">
               {/* Left: Your product rating */}
               <div className="border border-border p-6 md:p-8">
                 <p className="text-xs tracking-[0.2em] uppercase font-body text-muted-foreground mb-1">Your Product</p>
