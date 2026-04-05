@@ -42,10 +42,36 @@ const getBarColor = (score: number) => {
 };
 
 const CATEGORY_KEYWORDS = [
-  'lipstick','mascara','foundation','concealer','powder','blush','bronzer',
-  'eyeshadow','eyeliner','liner','primer','moisturizer','cream','serum',
-  'lotion','cleanser','toner','mask','oil','spray','gloss','brow',
-  'lashes','perfume','cologne','scrub','balm','palette','highlighter','lip',
+  "lipstick",
+  "mascara",
+  "foundation",
+  "concealer",
+  "powder",
+  "blush",
+  "bronzer",
+  "eyeshadow",
+  "eyeliner",
+  "liner",
+  "primer",
+  "moisturizer",
+  "cream",
+  "serum",
+  "lotion",
+  "cleanser",
+  "toner",
+  "mask",
+  "oil",
+  "spray",
+  "gloss",
+  "brow",
+  "lashes",
+  "perfume",
+  "cologne",
+  "scrub",
+  "balm",
+  "palette",
+  "highlighter",
+  "lip",
 ];
 
 const getProductCategory = (name: string): string | null => {
@@ -59,12 +85,7 @@ const findAlternative = (product: ProductEntry): ProductEntry | null => {
   // First: find a better product in the SAME category
   if (category) {
     const sameCat = products
-      .filter(
-        (p) =>
-          p.name !== product.name &&
-          p.overall > product.overall &&
-          getProductCategory(p.name) === category
-      )
+      .filter((p) => p.name !== product.name && p.overall > product.overall && getProductCategory(p.name) === category)
       .sort((a, b) => b.overall - a.overall);
 
     if (sameCat.length > 0) return sameCat[0];
@@ -74,7 +95,17 @@ const findAlternative = (product: ProductEntry): ProductEntry | null => {
   return null;
 };
 
-const CategoryRow = ({ name, score, icon, detail }: { name: string; score: number; icon: React.ReactNode; detail: string }) => (
+const CategoryRow = ({
+  name,
+  score,
+  icon,
+  detail,
+}: {
+  name: string;
+  score: number;
+  icon: React.ReactNode;
+  detail: string;
+}) => (
   <div className="flex items-center gap-3 py-2">
     <span className="text-muted-foreground">{icon}</span>
     <div className="flex-1 min-w-0">
@@ -104,9 +135,7 @@ const Start = () => {
     if (!query.trim()) return;
     setSearched(true);
     const q = query.toLowerCase().trim();
-    const found = products.filter(
-      (p) => p.name.toLowerCase().includes(q) || p.brand.toLowerCase().includes(q)
-    );
+    const found = products.filter((p) => p.name.toLowerCase().includes(q) || p.brand.toLowerCase().includes(q));
 
     if (found.length > 0) {
       const pick = found[0];
@@ -128,8 +157,18 @@ const Start = () => {
   };
 
   const categories = (p: ProductEntry) => [
-    { name: "Ingredients", score: p.scores.ingredients, icon: <FlaskConical className="w-4 h-4" />, detail: p.flags.length > 0 ? `Flagged: ${p.flags.slice(0, 3).join(", ")}` : "No major concerns found" },
-    { name: "Sustainability", score: p.scores.sustainability, icon: <Leaf className="w-4 h-4" />, detail: p.scores.sustainability >= 70 ? "Eco-friendly signals found" : "Limited sustainability info" },
+    {
+      name: "Ingredients",
+      score: p.scores.ingredients,
+      icon: <FlaskConical className="w-4 h-4" />,
+      detail: p.flags.length > 0 ? `Flagged: ${p.flags.slice(0, 3).join(", ")}` : "No major concerns found",
+    },
+    {
+      name: "Sustainability",
+      score: p.scores.sustainability,
+      icon: <Leaf className="w-4 h-4" />,
+      detail: p.scores.sustainability >= 70 ? "Eco-friendly signals found" : "Limited sustainability info",
+    },
   ];
 
   return (
@@ -157,7 +196,10 @@ const Start = () => {
               onKeyDown={(e) => e.key === "Enter" && handleSearch()}
               className="rounded-none border-border font-body"
             />
-            <Button onClick={handleSearch} className="rounded-none px-6 tracking-wider uppercase text-xs font-body gap-2">
+            <Button
+              onClick={handleSearch}
+              className="rounded-none px-6 tracking-wider uppercase text-xs font-body gap-2"
+            >
               <Search className="w-4 h-4" />
               Search
             </Button>
@@ -210,10 +252,16 @@ const Start = () => {
                 </div>
                 {selected.flags.length > 0 && (
                   <div className="mt-4 pt-4 border-t border-border">
-                    <p className="text-xs tracking-[0.2em] uppercase font-body text-muted-foreground mb-2">Flagged Ingredients</p>
+                    <p className="text-xs tracking-[0.2em] uppercase font-body text-muted-foreground mb-2">
+                      Flagged Ingredients
+                    </p>
                     <div className="flex flex-wrap gap-1.5">
                       {selected.flags.map((f) => (
-                        <Badge key={f} variant="outline" className="rounded-none text-xs font-body text-red-600 border-red-200">
+                        <Badge
+                          key={f}
+                          variant="outline"
+                          className="rounded-none text-xs font-body text-red-600 border-red-200"
+                        >
                           {f}
                         </Badge>
                       ))}
@@ -233,7 +281,9 @@ const Start = () => {
                     <p className="text-muted-foreground text-xs font-body mb-1">{alternative.brand}</p>
                     <h2 className="font-display text-xl md:text-2xl mb-4">{alternative.name}</h2>
                     <div className="flex items-center gap-2 mb-6">
-                      <span className="text-xs tracking-[0.2em] uppercase font-body text-muted-foreground">Overall</span>
+                      <span className="text-xs tracking-[0.2em] uppercase font-body text-muted-foreground">
+                        Overall
+                      </span>
                       <Badge className={`${getScoreBg(alternative.overall)} text-lg px-4 py-1 rounded-none border-0`}>
                         {alternative.overall}/100
                       </Badge>
@@ -244,11 +294,7 @@ const Start = () => {
                       ))}
                     </div>
                     {alternative.overall > selected.overall && (
-                      <div className="mt-4 pt-4 border-t border-green-200">
-                        <p className="text-sm font-body text-green-700">
-                          ✨ This product scores <span className="font-semibold">{alternative.overall - selected.overall} points higher</span> overall.
-                        </p>
-                      </div>
+                      <div className="mt-4 pt-4 border-t border-green-200"></div>
                     )}
                   </>
                 ) : (
@@ -256,7 +302,9 @@ const Start = () => {
                     <div>
                       <CheckCircle className="w-10 h-10 text-green-600 mx-auto mb-3" />
                       <p className="font-display text-xl mb-2">Great Choice!</p>
-                      <p className="text-sm text-muted-foreground font-body">This is already one of the cleanest options in our database.</p>
+                      <p className="text-sm text-muted-foreground font-body">
+                        This is already one of the cleanest options in our database.
+                      </p>
                     </div>
                   </div>
                 )}
