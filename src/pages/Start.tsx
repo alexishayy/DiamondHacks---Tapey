@@ -23,6 +23,9 @@ interface ProductEntry {
 
 const products = productsData as ProductEntry[];
 
+const getOverall = (p: ProductEntry) =>
+  Math.round((p.scores.ingredients + p.scores.sustainability) / 2);
+
 const getScoreColor = (score: number) => {
   if (score >= 80) return "text-green-600";
   if (score >= 60) return "text-yellow-600";
@@ -85,8 +88,8 @@ const findAlternative = (product: ProductEntry): ProductEntry | null => {
   // First: find a better product in the SAME category
   if (category) {
     const sameCat = products
-      .filter((p) => p.name !== product.name && p.overall > product.overall && getProductCategory(p.name) === category)
-      .sort((a, b) => b.overall - a.overall);
+      .filter((p) => p.name !== product.name && getOverall(p) > getOverall(product) && getProductCategory(p.name) === category)
+      .sort((a, b) => getOverall(b) - getOverall(a));
 
     if (sameCat.length > 0) return sameCat[0];
   }
@@ -241,8 +244,8 @@ const Start = () => {
                 <h2 className="font-display text-xl md:text-2xl mb-4">{selected.name}</h2>
                 <div className="flex items-center gap-2 mb-6">
                   <span className="text-xs tracking-[0.2em] uppercase font-body text-muted-foreground">Overall</span>
-                  <Badge className={`${getScoreBg(selected.overall)} text-lg px-4 py-1 rounded-none border-0`}>
-                    {selected.overall}/100
+                  <Badge className={`${getScoreBg(getOverall(selected))} text-lg px-4 py-1 rounded-none border-0`}>
+                    {getOverall(selected)}/100
                   </Badge>
                 </div>
                 <div className="space-y-1">
@@ -284,8 +287,8 @@ const Start = () => {
                       <span className="text-xs tracking-[0.2em] uppercase font-body text-muted-foreground">
                         Overall
                       </span>
-                      <Badge className={`${getScoreBg(alternative.overall)} text-lg px-4 py-1 rounded-none border-0`}>
-                        {alternative.overall}/100
+                      <Badge className={`${getScoreBg(getOverall(alternative))} text-lg px-4 py-1 rounded-none border-0`}>
+                        {getOverall(alternative)}/100
                       </Badge>
                     </div>
                     <div className="space-y-1">
@@ -293,7 +296,7 @@ const Start = () => {
                         <CategoryRow key={cat.name} {...cat} />
                       ))}
                     </div>
-                    {alternative.overall > selected.overall && (
+                    {getOverall(alternative) > getOverall(selected) && (
                       <div className="mt-4 pt-4 border-t border-green-200"></div>
                     )}
                   </>
