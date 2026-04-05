@@ -164,7 +164,7 @@ const Start = () => {
       detail: p.flags.length > 0 ? `Flagged: ${p.flags.slice(0, 3).join(", ")}` : "No major concerns found",
     },
     {
-      name: "Sustainability",
+      name: "Environmentally Friendly",
       score: p.scores.sustainability,
       icon: <Leaf className="w-4 h-4" />,
       detail: p.scores.sustainability >= 70 ? "Eco-friendly signals found" : "Limited sustainability info",
