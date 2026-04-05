@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import Navbar from "@/components/Navbar";
 
 interface RatingCategory {
   name: string;
@@ -70,6 +71,8 @@ const Start = () => {
   };
 
   return (
+    <div className="min-h-screen bg-background">
+      <Navbar />
     <div className="min-h-screen bg-background pt-20">
       <div className="max-w-3xl mx-auto px-6 md:px-12 py-16">
         <div className="text-center mb-12">
@@ -94,6 +97,7 @@ const Start = () => {
             <Search className="w-4 h-4" />
             Search
           </Button>
+          </div>
         </div>
 
         {searched && !result && (

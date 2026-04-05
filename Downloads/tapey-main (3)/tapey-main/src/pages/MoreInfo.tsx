@@ -29,6 +29,8 @@ const resources = [
 
 const MoreInfo = () => {
   return (
+    <div className="min-h-screen bg-background">
+      <Navbar />
      <div className="min-h-screen bg-background">
       <Navbar />
     <div className="min-h-screen bg-background pt-20">
@@ -63,8 +65,9 @@ const MoreInfo = () => {
               </Card>
             </a>
           ))}
-        </div>
       </div>
+    </div>
+    </div>
     </div>
     </div>
   );
