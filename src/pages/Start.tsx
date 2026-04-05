@@ -41,32 +41,37 @@ const getBarColor = (score: number) => {
   return "bg-red-500";
 };
 
-const findAlternative = (product: ProductEntry): ProductEntry | null => {
-  // Find a better-scoring product in a similar category (same first word in name or similar brand)
-  const nameWords = product.name.toLowerCase().split(/\s+/);
-  
-  // Try to find products with a shared keyword (e.g. "lipstick", "mascara", "moisturizer")
-  const keywords = nameWords.filter(w => w.length > 3);
-  
-  let candidates = products.filter(
-    (p) =>
-      p.name !== product.name &&
-      p.overall > product.overall &&
-      keywords.some((kw) => p.name.toLowerCase().includes(kw))
-  );
+const CATEGORY_KEYWORDS = [
+  'lipstick','mascara','foundation','concealer','powder','blush','bronzer',
+  'eyeshadow','eyeliner','liner','primer','moisturizer','cream','serum',
+  'lotion','cleanser','toner','mask','oil','spray','gloss','brow',
+  'lashes','perfume','cologne','scrub','balm','palette','highlighter','lip',
+];
 
-  // If no keyword match, just find a better product in the whole dataset
-  if (candidates.length === 0) {
-    candidates = products.filter(
-      (p) => p.name !== product.name && p.overall > product.overall
-    );
+const getProductCategory = (name: string): string | null => {
+  const lower = name.toLowerCase();
+  return CATEGORY_KEYWORDS.find((kw) => lower.includes(kw)) || null;
+};
+
+const findAlternative = (product: ProductEntry): ProductEntry | null => {
+  const category = getProductCategory(product.name);
+
+  // First: find a better product in the SAME category
+  if (category) {
+    const sameCat = products
+      .filter(
+        (p) =>
+          p.name !== product.name &&
+          p.overall > product.overall &&
+          getProductCategory(p.name) === category
+      )
+      .sort((a, b) => b.overall - a.overall);
+
+    if (sameCat.length > 0) return sameCat[0];
   }
 
-  if (candidates.length === 0) return null;
-
-  // Sort by overall score descending, pick the best
-  candidates.sort((a, b) => b.overall - a.overall);
-  return candidates[0];
+  // Fallback: any better product is not shown — we only suggest same-category
+  return null;
 };
 
 const CategoryRow = ({ name, score, icon, detail }: { name: string; score: number; icon: React.ReactNode; detail: string }) => (
