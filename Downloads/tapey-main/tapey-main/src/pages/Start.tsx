@@ -70,6 +70,7 @@ const Start = () => {
     setResult(found ? found[1] : null);
   };
 
+  
   return (
     <div className="min-h-screen bg-background">
           <Navbar />
