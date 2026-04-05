@@ -20,6 +20,11 @@ const resources = [
     description: "Cruelty-free makeup ensures that no beauty products are tested animals. Millions of animals are killed annualy due to animal testing. Choosing cruelty-free products improves not only animal population but also our environent by reducing pollution, conserving resources, and lowering carbon emissions assoicated with lab testing.",
     icon: <BookOpen className="w-5 h-5" />,
   },
+  {
+    title: "Ingredients To Look Out For",
+    description: "If you see any of these ingredients in your products- oxybenzone, triclosan, phthalates, PEGs, and silicones- consider choosing an environmentally friendly alternative.",
+    icon: <BookOpen className="w-5 h-5" />,
+  },
 ];
 
 
