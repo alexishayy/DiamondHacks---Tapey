@@ -1,6 +1,6 @@
 import Navbar from "@/components/Navbar";
 import { useState } from "react";
-import { Search, Leaf, FlaskConical, ShieldCheck, AlertTriangle, CheckCircle, ArrowRight } from "lucide-react";
+import { Search, Leaf, FlaskConical, AlertTriangle, CheckCircle, ArrowRight } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
