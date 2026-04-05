@@ -45,6 +45,7 @@ const Index = () => {
           title="Our Story"
           subtitle="About Us"
           image={makeupImg}
+          description = "At Tapey, we believe that beauty should not be something you have to compromise on. Beauty staples should not have to be filled with toxic ingredients that harm you or our environment. So that is why it has become our mission to provide easy access to real data on your every beauty products are and clean alternatives to them. Further bettering you and our future generations."
         />
       </section>
 
@@ -61,8 +62,6 @@ const Index = () => {
           </div>
           {[
             { title: "Pages", links: ["Home", "Start", "More Info"] },
-            { title: "Company", links: ["About", "Contact", "Press"] },
-            { title: "Help", links: ["FAQ", "Privacy", "Terms"] },
           ].map((col) => (
             <div key={col.title}>
               <h4 className="font-body text-xs tracking-[0.2em] uppercase mb-4 text-foreground">{col.title}</h4>
