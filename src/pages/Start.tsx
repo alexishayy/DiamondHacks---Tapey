@@ -23,6 +23,9 @@ interface ProductEntry {
 
 const products = productsData as ProductEntry[];
 
+const getOverall = (p: ProductEntry) =>
+  Math.round((p.scores.ingredients + p.scores.sustainability) / 2);
+
 const getScoreColor = (score: number) => {
   if (score >= 80) return "text-green-600";
   if (score >= 60) return "text-yellow-600";
