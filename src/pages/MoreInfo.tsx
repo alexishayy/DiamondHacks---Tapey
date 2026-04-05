@@ -5,7 +5,7 @@ import React from "react";
 
 const resources = [
   {
-    title: "Priortizing Consumer Health",
+    title: "Prioritizing Consumer Health",
     description:
       "Clean beauty puts the health of its consumers at the front lines. Clean beauty removes potentially toxic ingredients, such as parabens, synthetic frgrances, and phthalates. Further preventing any long-term health issues. ",
     icon: <ShieldCheck className="w-5 h-5" />,
@@ -19,11 +19,11 @@ const resources = [
   {
     title: "Cruelty Free",
     description:
-      "Cruelty-free makeup ensures that no beauty products are tested animals. Millions of animals are killed annualy due to animal testing. Choosing cruelty-free products improves not only animal population but also our environent by reducing pollution, conserving resources, and lowering carbon emissions assoicated with lab testing.",
+      "Cruelty-free makeup ensures that no beauty products are tested on animals. Millions of animals are killed annualy due to animal testing. Choosing cruelty-free products improves not only animal population but also our environent by reducing pollution, conserving resources, and lowering carbon emissions assoicated with lab testing.",
     icon: <BookOpen className="w-5 h-5" />,
   },
   {
-    title: "Sephora Brands that aren't Cruelty Free",
+    title: "Sephora Brands That Aren't Cruelty Free",
     description:
       "MAC Cosmetics, SEPHORA COLLECTION, Caudalie, Lancôme, NARS, Dior, Givenchy, Benefit Cosmetics, Bobbi Brown, Burberry, BVLGARI, L’Occitane, Laura Mercier, Fresh, Shiseido philosophy, Yves Saint Laurent (YSL), TOM FORD, MAKE UP FOR EVER, Calvin Klein, Clinique, Gucci, Guerlain, and Marc Jacobs Fragrances.",
     icon: <BookOpen className="w-5 h-5" />,
