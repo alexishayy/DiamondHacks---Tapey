@@ -129,9 +129,7 @@ const Start = () => {
 
   const categories = (p: ProductEntry) => [
     { name: "Ingredients", score: p.scores.ingredients, icon: <FlaskConical className="w-4 h-4" />, detail: p.flags.length > 0 ? `Flagged: ${p.flags.slice(0, 3).join(", ")}` : "No major concerns found" },
-    { name: "Safety", score: p.scores.safety, icon: <ShieldCheck className="w-4 h-4" />, detail: p.scores.safety >= 80 ? "Professionally tested" : "Standard safety profile" },
     { name: "Sustainability", score: p.scores.sustainability, icon: <Leaf className="w-4 h-4" />, detail: p.scores.sustainability >= 70 ? "Eco-friendly signals found" : "Limited sustainability info" },
-    { name: "Transparency", score: p.scores.transparency, icon: <CheckCircle className="w-4 h-4" />, detail: p.scores.transparency >= 80 ? "Full ingredient disclosure" : "Partial ingredient info" },
   ];
 
   return (
