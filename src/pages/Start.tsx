@@ -178,7 +178,7 @@ const Start = () => {
         <div className="max-w-6xl mx-auto px-6 md:px-12 py-16">
           {/* Header */}
           <div className="text-center mb-12">
-            <p className="text-muted-foreground text-xs tracking-[0.3em] uppercase mb-3 font-body">Product Scanner</p>
+            <p className="text-muted-foreground text-xs tracking-[0.3em] uppercase mb-3 font-body"></p>
             <h1 className="font-display text-3xl md:text-5xl mb-4">
               How <span className="italic">Clean</span> Is Your Beauty?
             </h1>
